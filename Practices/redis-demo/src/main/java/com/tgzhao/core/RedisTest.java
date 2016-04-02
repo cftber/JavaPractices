@@ -15,7 +15,7 @@ public class RedisTest {
         String str = RedisFactory.doWithShardedJedis("demo", new RedisFactory.ShardedJedisWorker<String>(){
             @Override
             public String work(ShardedJedis jedis) {
-//                jedis.set("redisdemo", "test data hahaha hahah ");
+                jedis.set("redisdemo", "test data hahaha hahah ");
                 String strFromRedis = jedis.get("redisdemo");
                 System.out.println(jedis.get("redisdemo"));
                 return strFromRedis;
