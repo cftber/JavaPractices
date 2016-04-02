@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress SpringSecurityFiltersConfiguredInspection -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+    <bean id="SpringApplicationContext" class="com.tgzhao.core.util.SpringApplicationContext"/>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:redis.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="jedisPool_demo" class="redis.clients.jedis.JedisPool" destroy-method="destroy">
+        <constructor-arg index="0">
+            <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig" >
+                <property name="maxTotal" value="${redis.demo.pool.maxTotal}" />
+                <property name="maxIdle" value="${redis.demo.pool.maxIdle}" />
+                <property name="maxWaitMillis" value="${redis.demo.pool.maxWaitMillis}" />
+                <property name="testOnBorrow" value="${redis.demo.pool.testOnBorrow}" />
+                <property name="testOnReturn" value="${redis.demo.pool.testOnReturn}" />
+            </bean>
+        </constructor-arg>
+        <constructor-arg index="1" value="${redis.demo.host}" />
+        <constructor-arg index="2" value="${redis.demo.port}" type="int" />
+    </bean>
+
+    <bean id="shardedJedisPool_demo" class="redis.clients.jedis.ShardedJedisPool" destroy-method="destroy">
+        <constructor-arg index="0">
+            <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig" >
+                <property name="maxTotal" value="${redis.demo.pool.maxTotal}" />
+                <property name="maxIdle" value="${redis.demo.pool.maxIdle}" />
+                <property name="maxWaitMillis" value="${redis.demo.pool.maxWaitMillis}" />
+                <property name="testOnBorrow" value="${redis.demo.pool.testOnBorrow}" />
+                <property name="testOnReturn" value="${redis.demo.pool.testOnReturn}" />
+            </bean>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <list>
+                <bean class="redis.clients.jedis.JedisShardInfo">
+                    <constructor-arg index="0" value="${redis.demo.host}" />
+                    <constructor-arg index="1" value="${redis.demo.port}" type="int" />
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>
