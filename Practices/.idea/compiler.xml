@@ -28,10 +28,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
-      <module name="core" target="1.5" />
-      <module name="Practices" target="1.5" />
-      <module name="redis-demo" target="1.5" />
-      <module name="webdemo" target="1.5" />
+      <module name="core" target="1.7" />
+      <module name="Practices" target="1.7" />
+      <module name="redis-demo" target="1.7" />
+      <module name="webdemo" target="1.7" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
