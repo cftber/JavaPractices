@@ -13,6 +13,7 @@
         <module>core</module>
         <module>webdemo</module>
         <module>webdemo</module>
+        <module>storm</module>
     </modules>
 
     <profiles>

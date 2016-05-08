@@ -9,6 +9,12 @@ import java.io.IOException;
  */
 public class ThreadTest {
     public static void main(String[] args) throws IOException {
-        Cnblogs.fetchArticlesCommon();
+//        Cnblogs.fetchArticlesCommon();
+        //String str=new String(.getBytes("������������"),"ISO-8859-1");
+        String aaa = "编码格式测试";
+        String bbb = new String(aaa.getBytes(), "utf-8");
+        System.out.println("编码格式测试");
+        System.out.println(aaa);
+        System.out.println(bbb);
     }
 }
